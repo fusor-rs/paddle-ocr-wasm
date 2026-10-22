@@ -12,11 +12,11 @@ describes what it does; don't invent scope, features or options beyond the task.
 
 ## Repository
 
-- `crates/paddle-ocr-runtime`: the wasm-bindgen surface of the model (bundle
-  parts and RGBA pixels in, the answer's text out), built as four browser
-  runtimes.
-- `crates/paddle-ocr-cli`: the native CLI `paddle-ocr` (`compile`, `read`,
-  `bench`, `parity`).
+- `vendor/fusor-ai/models/paddle-ocr/runtime`: the wasm-bindgen surface of the
+  model (bundle parts and RGBA pixels in, the answer's text out), built as four
+  browser runtimes.
+- `vendor/fusor-ai/models/paddle-ocr/cli`: the native CLI `paddle-ocr`
+  (`compile`, `read`, `bench`, `parity`).
 - `app/`: the page, a [fusor](https://github.com/fusor-rs/fusor) app with its own
   Cargo workspace (fusor pins wasm-bindgen 0.2.117, the runtime 0.2.129): the
   image, the task, reading and the live measurements as Rust signals in
