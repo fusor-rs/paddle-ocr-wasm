@@ -1,0 +1,6 @@
+{
+  "name": "paddle-ocr-app",
+  "private": true,
+  "type": "module",
+  "devDependencies": { "esbuild": "0.28.2" }
+}
