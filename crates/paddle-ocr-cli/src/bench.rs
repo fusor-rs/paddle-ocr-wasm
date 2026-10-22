@@ -3,6 +3,7 @@
 use std::time::Instant;
 
 use anyhow::Result;
+use bundle::Engine as _;
 use paddle_ocr::pipeline::Stage;
 use paddle_ocr::prompt::Task;
 use paddle_ocr::session::{Engine, Request};
