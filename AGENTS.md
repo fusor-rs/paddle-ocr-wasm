@@ -28,11 +28,11 @@ describes what it does; don't invent scope, features or options beyond the task.
   golden harness (the reference at a pinned version), the Node smoke test and
   the character error rate; `e2e/run.mjs`: the headless Chrome run;
   `fixtures/`: each image's task and the reference's answers.
-- [fusor-ai](https://github.com/fusor-rs/fusor-ai): the model (`paddle-ocr`), its
-  compiler (`paddle-ocr-compile`), the kernels, blocks and bundle format come
-  from crates.io as `fusor-ai-*` crates; `vendor/fusor-ai`, a git submodule at
-  the same release, supplies what crates.io does not carry: the browser loader
-  and compute pool, the runtime build, the import check and the dev server.
+- [fusor-ai](https://github.com/fusor-rs/fusor-ai): the model (`paddle-ocr`),
+  its compiler (`paddle-ocr-compile`), the kernels, blocks and bundle format
+  come from `vendor/fusor-ai`, a git submodule pinned to a commit pushed to
+  fusor-ai, with the browser loader and compute pool, the runtime build, the
+  import check and the dev server.
 
 What belongs where: model code (dimensions, tensor names, wiring, the image
 preprocessing, the prompt and its rotary positions, the reading loop) and
@@ -57,14 +57,11 @@ Constraints that hold everywhere:
   entropy. fusor-ai's `scripts/check-wasm-imports.mjs` is the check (`just
   runtimes` runs it on every build); never widen its allowlists to make a build
   pass.
-- The `fusor-ai-*` versions in `[workspace.dependencies]` and `vendor/fusor-ai`
-  name the same fusor-ai release (the submodule at its `v<version>` tag), and
-  move together in a change of their own, with the parity numbers and the e2e
-  result it gave. `[patch.crates-io]` entries pointing at a fusor-ai checkout
-  are for trying an unreleased change locally and never land. No copies of
-  fusor-ai code here. Until fusor-ai publishes `fusor-ai-paddle-ocr`, the model
-  is built in fusor-ai and tried here through such a patch; nothing that needs
-  an unpublished fusor-ai lands here.
+- fusor-ai comes only from `vendor/fusor-ai`: path dependencies in
+  `[workspace.dependencies]`, never a crates.io version, a `[patch]` table or a
+  sibling checkout. The submodule moves to another pushed fusor-ai commit in a
+  change of its own, with the parity numbers and the e2e result it gave. No
+  copies of fusor-ai code here.
 - The reference is PaddleOCR-VL-1.6 in transformers at the version the golden
   harness pins, with its Pillow image processor and the learned position grid
   resampled with `align_corners=False`, as PaddlePaddle's own code does it (the
