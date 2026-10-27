@@ -11,6 +11,8 @@
 
 **A formula read to its first token in 0.9 s, the answer written at up to 370 tokens a second**, in Chrome on an Apple M4 Pro, eight threads. [Benchmarks](benchmarks.md)
 
+<a href="https://huggingface.co/spaces/fusorlabs/paddle-ocr-wasm"><img src="assets/demo/demo.gif" alt="paddle-ocr-wasm in Chrome: a photographed book page read by PaddleOCR-VL-1.6 on the CPU at 288 tokens a second, zero network requests" width="720"></a>
+
 Drop, paste or pick an image and read its text, a table, a formula, a chart or a seal, read by PaddlePaddle's [PaddleOCR-VL-1.6](https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6), a 0.9B vision-language model for documents, computed on your own device. No server, no API key, no GPU required, and once the model has loaded, no image leaves the page.
 
 paddle-ocr-wasm is the app around the model: a [fusor](https://github.com/fusor-rs/fusor) page, the browser runtime and a native CLI. The model itself, compiled to WebAssembly, is built with [fusor-ai](https://github.com/fusor-rs/fusor-ai), the toolkit for AI runtimes in Rust and WebAssembly, from the published weights.
