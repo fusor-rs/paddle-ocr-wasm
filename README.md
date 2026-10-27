@@ -7,13 +7,17 @@
 
 # Documents to text in the browser, on the CPU
 
+**[Try it in your browser](https://huggingface.co/spaces/fusorlabs/paddle-ocr-wasm)**: no install, no server. The model downloads once and runs on your CPU.
+
+**A formula read to its first token in 0.9 s, the answer written at up to 370 tokens a second**, in Chrome on an Apple M4 Pro, eight threads. [Benchmarks](benchmarks.md)
+
 Drop, paste or pick an image and read its text, a table, a formula, a chart or a seal, read by PaddlePaddle's [PaddleOCR-VL-1.6](https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6), a 0.9B vision-language model for documents, computed on your own device. No server, no API key, no GPU required, and once the model has loaded, no image leaves the page.
 
 paddle-ocr-wasm is the app around the model: a [fusor](https://github.com/fusor-rs/fusor) page, the browser runtime and a native CLI. The model itself, compiled to WebAssembly, is built with [fusor-ai](https://github.com/fusor-rs/fusor-ai), the toolkit for AI runtimes in Rust and WebAssembly, from the published weights.
 
 **In development · v0.1**: this is experimental software. See [status and known limitations](#status-and-known-limitations).
 
-[Run it](#run-it-locally) · [How it works](#how-it-works) · [How fast is it](#how-fast-is-it) · [Benchmarks](benchmarks.md) · [Status](#status-and-known-limitations) · [Contributing](CONTRIBUTING.md)
+[Run it](#run-it-locally) · [Try it online](#try-it-online) · [How it works](#how-it-works) · [How fast is it](#how-fast-is-it) · [Benchmarks](benchmarks.md) · [Status](#status-and-known-limitations) · [Contributing](CONTRIBUTING.md)
 
 ## Run it locally
 
@@ -27,6 +31,10 @@ just ui
 and open the address it prints. That's all: `just ui` installs the pinned tools (the threads toolchain with rustup; wasm-bindgen, binaryen and the fusor CLI into `.tools/`), downloads the checkpoint at a pinned revision (1.9 GB, each file sha256-checked), compiles it into an 831 MB bundle, builds the four browser runtimes (a few minutes the first time, seconds after) and the page, and serves it on `http://localhost:8787` with the bundle beside it.
 
 Drop an image on the page, paste one, or choose a file; pick what to read it as (**Text**, **Table**, **Formula**, **Chart** or **Seal**) and press **Read**, even while the model is still loading: the image is read the moment the model is ready. The answer appears token by token; a table is drawn as a table, with its OTSL cells below it to copy. Every reading is measured live: the time to the answer's first token, the tokens written per second, the size the image was resized to and its tokens, and the network requests since the model loaded, which stay at zero.
+
+## Try it online
+
+Open the Hugging Face Space [fusorlabs/paddle-ocr-wasm](https://huggingface.co/spaces/fusorlabs/paddle-ocr-wasm) in Chrome or Edge. The page downloads the 831 MB model once and keeps it in the browser's storage, so the next visit loads in about a second.
 
 ## More ways to run it
 
